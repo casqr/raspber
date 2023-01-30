@@ -8,17 +8,17 @@ import rospy
 class DifferentialDriveController:
     def __init__(self):
         # Get parameters from the parameter server
-        self.wheel_diameter = rospy.get_param("~wheel_diameter", 0.1)
-        self.wheel_base = rospy.get_param("~wheel_base", 0.2)
+        self.wheel_diameter = rospy.get_param("~wheel_diameter", 0.066)
+        self.wheel_base = rospy.get_param("~wheel_base", 1.33)
         self.max_pwm = rospy.get_param("~max_pwm", 100)
         self.min_pwm = rospy.get_param("~min_pwm", 0)
 
-        self.pin_left_forward = rospy.get_param("~pin_left_forward", 7)
-        self.pin_left_backward = rospy.get_param("~pin_left_backward", 11)
-        self.pin_left_pwm = rospy.get_param("~pin_left_pwm", 13)
-        self.pin_right_forward = rospy.get_param("~pin_right_forward", 15)
-        self.pin_right_backward = rospy.get_param("~pin_right_backward", 19)
-        self.pin_right_pwm = rospy.get_param("~pin_right_pwm", 21)
+        self.pin_left_forward = 26
+        self.pin_left_backward = 13
+        self.pin_left_pwm = 5
+        self.pin_right_forward = 21
+        self.pin_right_backward = 16
+        self.pin_right_pwm = 12
 
         self.left_motor_speed = 0
         self.right_motor_speed = 0

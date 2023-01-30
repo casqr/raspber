@@ -9,8 +9,8 @@ import tf
 class OdometryPoseController:
     def __init__(self):
         # Set up photo interrupter sensor for encoder
-        self.pin_left_encoder = 12
-        self.pin_right_encoder = 16
+        self.pin_left_encoder = 17
+        self.pin_right_encoder = 18
 
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.pin_left_encoder, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -20,8 +20,8 @@ class OdometryPoseController:
         GPIO.add_event_detect(self.pin_right_encoder, GPIO.RISING, callback=self.right_encoder_callback)
 
         self.encoder_pulses_per_rev = 20
-        self.wheel_diameter = 0.1  # in meters
-        self.wheel_base = 0.2  # in meters
+        self.wheel_diameter = 0.066  # in meters
+        self.wheel_base = 1.33  # in meters
         self.x = 0
         self.y = 0
         self.theta = 0
@@ -42,7 +42,8 @@ class OdometryPoseController:
         current_time = rospy.Time.now()
         dt = (current_time - self.last_time).to_sec()
         self.last_time = current_time
-        #
+        
+        #calculating the encoder velocity
         left_delta = self.left_encoder_count / self.encoder_pulses_per_rev * self.wheel_diameter * math.pi
         right_delta = self.right_encoder_count / self.encoder_pulses_per_rev * self.wheel_diameter * math.pi
 
@@ -55,6 +56,7 @@ class OdometryPoseController:
         self.x += distance * math.cos(self.theta + delta_theta / 2)
         self.y += distance * math.sin(self.theta + delta_theta / 2)
         self.theta += delta_theta
+        
         # Calculate linear and angular velocity
         self.x_vel = distance / dt
         self.rot_vel = delta_theta / dt
