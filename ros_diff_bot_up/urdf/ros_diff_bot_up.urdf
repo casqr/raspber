@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="ros_diff_bot_up">
+  <!--<link
+    name="odom">
+  </link>
+  <joint name="dummy_joint" type="fixed">
+     <parent link="odom"/>
+     <child link="base_footprint"/>
+     <origin rpy="0 0 0" xyz="0.0 0.1 -0.042"/>
+   </joint> 
+  <link
+    name="base_footprint">
+  </link> 
+  <gazebo reference="base_footprint">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint name="base_joint" type="fixed">
+     <parent link="base_footprint"/>
+     <child link="base_link"/>
+     <origin rpy="0 0 0" xyz="0.01 0.0 0.042"/>    
+     <axis xyz="0 0 1" />
+   
+  </joint> -->
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0036937316889238 -2.77555756156289E-17 -0.00180916346572228"
+        rpy="0 0 0" />
+      <mass
+        value="0.0558864014844809" />
+      <inertia
+        ixx="4.88482309612356E-05"
+        ixy="7.26100458535936E-22"
+        ixz="1.41265658502226E-07"
+        iyy="0.00016793802401372"
+        iyz="-5.413973657873E-21"
+        izz="0.000215540611718324" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 0.3" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="base_link">
+    <material>Gazebo/White</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <link
+    name="right_wheel_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0294364519050273" />
+      <inertia
+        ixx="1.14621536997523E-05"
+        ixy="-6.93084858493936E-14"
+        ixz="1.89251632684548E-14"
+        iyy="1.96065925873771E-05"
+        iyz="7.371933423442E-14"
+        izz="1.1462153974395E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/right_wheel_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/right_wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="right_wheel_Link">
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
+    <material>Gazebo/Yellow</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint
+    name="right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.0362142857142861 -0.068 -0.0141"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="10" />
+  </joint>
+   <!-- Transmission is important to link the joints and the controller -->
+  <transmission name="right_wheel_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_wheel_joint"/>
+    <actuator name="right_wheel_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link
+    name="right_motor_Link">
+    <inertial>
+      <origin
+        xyz="-0.02035794305581 8.04231341817591E-05 -6.93889390390723E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.0323790347078976" />
+      <inertia
+        ixx="2.6089411129439E-06"
+        ixy="6.13625526923788E-08"
+        ixz="-8.98467002735395E-22"
+        iyy="1.35835801657752E-05"
+        iyz="6.19022252170575E-23"
+        izz="1.31198505548233E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/right_motor_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 0" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/right_motor_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="right_motor_Link">
+    <material>Gazebo/Black</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint
+    name="r_motor_joint"
+    type="fixed">
+    <origin
+      xyz="0.036214 -0.04 -0.0141"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_motor_Link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="left_wheel_Link">
+    <inertial>
+      <origin
+        xyz="-5.96183602485922E-10 0.000474669223477234 5.43028573496418E-10"
+        rpy="0 0 0" />
+      <mass
+        value="0.0294364520183894" />
+      <inertia
+        ixx="1.14621536795018E-05"
+        ixy="-1.29635565418801E-13"
+        ixz="4.38193812753492E-14"
+        iyy="1.960659266517E-05"
+        iyz="1.10188868458034E-13"
+        izz="1.14621541027451E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/left_wheel_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/left_wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="left_wheel_Link">
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
+    <material>Gazebo/Yellow</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint
+    name="left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.036214285714286 0.0680000000000001 -0.0141"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="10" />
+  </joint>
+   <!-- Transmission is important to link the joints and the controller -->
+  <transmission name="left_wheel_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_wheel_joint"/>
+    <actuator name="left_wheel_joint_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <link
+    name="left_motor_Link">
+    <inertial>
+      <origin
+        xyz="-0.02035794305581 -8.04231341817729E-05 -6.93889390390723E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.0323790347078976" />
+      <inertia
+        ixx="2.60894111294391E-06"
+        ixy="-6.13625526923893E-08"
+        ixz="-8.98174551170202E-22"
+        iyy="1.35835801657753E-05"
+        iyz="-4.52729251176918E-22"
+        izz="1.31198505548233E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/left_motor_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 0" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/left_motor_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="left_motor_Link">
+    <material>Gazebo/Black</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint
+    name="l_motor_joint"
+    type="fixed">
+    <origin
+      xyz="0.036214 0.04 -0.0141"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_motor_Link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="caster_top_Link">
+    <inertial>
+      <origin
+        xyz="-0.00626129806165891 0.000247250578410199 -0.0263946244615757"
+        rpy="0 0 0" />
+      <mass
+        value="0.015096753954997" />
+      <inertia
+        ixx="1.2444850458406E-06"
+        ixy="-1.39252830560497E-08"
+        ixz="-2.06478504856202E-07"
+        iyy="9.76243119537265E-07"
+        iyz="1.06851859987863E-08"
+        izz="1.53085651294844E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/caster_top_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/caster_top_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="caster_top_Link">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <joint
+    name="caster_t_joint"
+    type="continuous">
+    <origin
+      xyz="-0.076786 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_top_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="caster_whee_Link">
+    <inertial>
+      <origin
+        xyz="3.87671968702791E-05 0.00074899739949269 -3.46944695195361E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.00407472440871672" />
+      <inertia
+        ixx="2.55385195948657E-07"
+        ixy="8.57582553515056E-09"
+        ixz="-2.91573639372636E-25"
+        iyy="4.20629623662581E-07"
+        iyz="5.7157090842751E-23"
+        izz="2.54941321621361E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/caster_whee_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/caster_whee_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="caster_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0135207203877388 -5.11878558277987E-05 -0.0345000000000001"
+      rpy="0 0 0" />
+    <parent
+      link="caster_top_Link" />
+    <child
+      link="caster_whee_Link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="10" />
+  </joint>
+  <gazebo reference="caster_whee_Link">
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <link
+    name="caster_top_fastners">
+    <inertial>
+      <origin
+        xyz="2.93313351384938E-08 3.46027283840145E-08 0.013830098608579"
+        rpy="0 0 0" />
+      <mass
+        value="0.011622054420826" />
+      <inertia
+        ixx="9.21271437837048E-07"
+        ixy="3.33385901044985E-13"
+        ixz="-1.94334116624817E-12"
+        iyy="8.84428897490687E-07"
+        iyz="1.41065867697288E-12"
+        izz="1.75921327780288E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/caster_top_fastners.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ros_diff_bot_up/meshes/caster_top_fastners.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="none"
+    type="fixed">
+    <origin
+      xyz="-0.0767857142857139 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="caster_top_fastners" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  
+  <gazebo>
+    <plugin name="joint_state_publisher"
+            filename="libgazebo_ros_joint_state_publisher.so">
+      <jointName>caster_t_joint, caster_joint</jointName>
+    </plugin>
+  </gazebo>
+
+  <!-- Plugin for differential drive -->
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so" >
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishTf>1</publishTf>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10</updateRate>
+      <leftJoint>left_wheel_joint</leftJoint>
+      <rightJoint>right_wheel_joint</rightJoint>
+      <wheelSeparation>0.118</wheelSeparation>
+      <wheelDiameter>0.062</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>20</wheelTorque>
+      <wheelAcceleration>3</wheelAcceleration>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryTopic>odom</odometryTopic>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <odometrySource>1</odometrySource>
+      <publishWheelTF>true</publishWheelTF>
+      <publishOdom>true</publishOdom>
+      <publishWheelJointState>true</publishWheelJointState>
+      <legacyMode>false</legacyMode>
+    </plugin>
+  </gazebo>
+</robot>

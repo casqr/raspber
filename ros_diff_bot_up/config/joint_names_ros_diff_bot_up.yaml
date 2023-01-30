@@ -1,0 +1,6 @@
+controller_joint_names: ['', 'right_wheel_joint', 'left_wheel_joint', 'caster_t_joint', 'caster_joint', ]
+
+#Controller to continuously publish joint states/positions
+joint_state_controller:
+  type: "joint_state_controller/JointStateController"
+  publish_rate: 50
