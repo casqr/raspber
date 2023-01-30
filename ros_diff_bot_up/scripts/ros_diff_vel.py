@@ -44,6 +44,8 @@ class DifferentialDriveController:
         # calculate the left and right motor speeds based on the linear and angular velocities
         left_speed = (2 * linear_x - angular_z * self.wheel_base) / (2 * self.wheel_diameter)
         right_speed = (2 * linear_x + angular_z * self.wheel_base) / (2 * self.wheel_diameter)
+        
+        rospy.loginfo(f"Left speed: {left_speed}\nRight speed: {right_speed}")
 
         self.set_left_motor_speed(left_speed)
         self.set_right_motor_speed(right_speed)
@@ -71,6 +73,7 @@ class DifferentialDriveController:
     def run(self):
         # Initialize ROS node
         rospy.init_node('differential_drive_controller')
+        rospy.loginfo("Node started")
 
         # Subscribe to Twist messages
         rospy.Subscriber("cmd_vel", Twist, self.twist_callback)
