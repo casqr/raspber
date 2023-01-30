@@ -9,7 +9,7 @@ class DifferentialDriveController:
     def __init__(self):
         # Get parameters from the parameter server
         self.wheel_diameter = rospy.get_param("~wheel_diameter", 0.066)
-        self.wheel_base = rospy.get_param("~wheel_base", 1.33)
+        self.wheel_base = rospy.get_param("~wheel_base", 0.133)
         self.max_pwm = rospy.get_param("~max_pwm", 100)
         self.min_pwm = rospy.get_param("~min_pwm", 0)
 

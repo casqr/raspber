@@ -21,7 +21,7 @@ class OdometryPoseController:
 
         self.encoder_pulses_per_rev = 20
         self.wheel_diameter = 0.066  # in meters
-        self.wheel_base = 1.33  # in meters
+        self.wheel_base = 0.133  # in meters
         self.x = 0
         self.y = 0
         self.theta = 0
